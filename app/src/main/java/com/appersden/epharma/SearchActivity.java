@@ -9,34 +9,30 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-    EditText et_search;
+    SearchView et_search;
     ImageView img_search,img_home,img_cart,img_profile;
+    LinearLayout lay_search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        et_search=(EditText)findViewById(R.id.et_searchmedicine);
-        img_search=(ImageView)findViewById(R.id.img_search);
+        et_search=(SearchView) findViewById(R.id.et_searchmedicine);
+        //img_search=(ImageView)findViewById(R.id.img_search);
         img_home=(ImageView)findViewById(R.id.img_homesearch);
         img_cart=(ImageView)findViewById(R.id.img_cartsearch);
         img_profile=(ImageView)findViewById(R.id.img_profilesearch);
+        lay_search=(LinearLayout)findViewById(R.id.llsearch);
+
+
         changeiconcolour(SearchActivity.this,R.drawable.homepage,img_home);
         changeiconcolourtogrey(SearchActivity.this,R.drawable.cart,img_cart);
         changeiconcolourtogrey(SearchActivity.this,R.drawable.profile,img_profile);
-        img_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(SearchActivity.this,MedicineListActivity.class);
-                i.putExtra("search",et_search.getText().toString());
-                startActivity(i);
-            }
-        });
-
 
         img_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +40,8 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(new Intent(SearchActivity.this,CartActivity.class));
             }
         });
+
+        et_search.setOnQueryTextListener(this);
     }
 
     public static void changeiconcolour(Context context, int resId, ImageView img){
@@ -56,5 +54,16 @@ public class SearchActivity extends AppCompatActivity {
         Drawable mDrawable = ContextCompat.getDrawable(context, resId);
         mDrawable.setColorFilter(Color.parseColor("#D3D8E0"), PorterDuff.Mode.MULTIPLY);
         img.setImageDrawable(mDrawable);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        //dialog.getWindow().setGravity(Gravity.BOTTOM);
+        return false;
     }
 }

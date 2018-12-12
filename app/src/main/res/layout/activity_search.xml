@@ -21,6 +21,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:id="@+id/llsearch"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context="com.appersden.epharma.MedicineListActivity">
@@ -41,25 +42,19 @@
             android:padding="5dp">
 
 
-           <ImageView
-    android:id="@+id/img_search"
-    android:layout_marginLeft="20dp"
-    android:layout_centerVertical="true"
-    android:src="@drawable/search"
-    android:layout_width="20dp"
-    android:layout_height="20dp" />
 
-            <EditText
-                android:layout_toRightOf="@+id/img_search"
-                android:layout_centerVertical="true"
-                android:textSize="20sp"
+            <SearchView
+                android:iconifiedByDefault="false"
+                android:clickable="true"
                 android:background="@null"
-                android:layout_marginLeft="20dp"
-                android:textColorHint="#475890"
                 android:id="@+id/et_searchmedicine"
-                android:hint="Search medicines.."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:queryHint="Search medicines..."
+                android:closeIcon="@drawable/close"
+                android:layout_gravity="center"
+                android:singleLine="true" />
 
 
         </RelativeLayout>
